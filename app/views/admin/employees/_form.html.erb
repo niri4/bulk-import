@@ -1,0 +1,12 @@
+<%= form_tag({action: 'create'}, multipart: true) do %>
+  <div class="field">
+    <%= select_tag 'bulk_import[company]', options_for_select(companies.collect{ |u| [u.name, u.id]}), {required: true, prompt: 'select company'} %>
+  </div>
+  <div class="field">
+    <label for="file">File to Upload</label>
+    <%= file_field_tag 'bulk_import[file]', required: true %>
+  </div>
+  <div class="field">
+    <%= submit_tag %>
+  </div>
+<% end %>

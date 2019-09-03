@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BulkimportQuiz</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= link_to 'Companies', companies_path %>
+    <%= link_to 'Employees', employees_path %>
+    <%= link_to 'Policies', policies_path %>
+    <% if user_signed_in? %>
+      <% if current_user.type == 'Admin'%>
+        <%= link_to 'Bulk employees upload', new_admin_employee_path %>
+      <%end%>
+      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+    <%else%>
+      <%= link_to('Login', new_user_session_path) %>
+    <%end%>
+
+    <%= yield %>
+  </body>
+</html>
